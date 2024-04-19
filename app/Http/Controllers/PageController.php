@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use Illuminate\Support\Facades\DB;
 class PageController
 {
     /**
@@ -32,8 +33,8 @@ class PageController
 
     public function homepage()
     {
-        $contacts = Contact::all();
-        return view('homepage', ['contacts' => $contacts]);
+        $contact = contact::all();
+        return view('homepage', ['contacts' => $contact]);
     }
 
     /**
