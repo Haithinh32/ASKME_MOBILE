@@ -18,7 +18,7 @@
     @include('components.header')
     <main>
         {{ $slot }}
-        @php(@dd($contacts))
+        {{-- @php(@dd($contacts)) --}}
     </main>
     {{-- Footer here --}}
     @include('components.footer', compact('contacts'))
