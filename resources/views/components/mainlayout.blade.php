@@ -15,13 +15,13 @@
 
 <body>
     {{-- Header here --}}
-    @include('components.header')
+    <x-header></x-header>
     <main>
         {{ $slot }}
         {{-- @php(@dd($contacts)) --}}
     </main>
     {{-- Footer here --}}
-    @include('components.footer', compact('contacts'))
+    <x-footer></x-footer>
 </body>
 
 </html>
