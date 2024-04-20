@@ -18,7 +18,7 @@
     <x-header></x-header>
     <main>
         {{ $slot }}
-        {{-- @php(@dd($contacts)) --}}
+        @php(@dd($contacts))
     </main>
     {{-- Footer here --}}
     <x-footer></x-footer>
