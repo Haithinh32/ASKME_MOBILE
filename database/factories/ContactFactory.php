@@ -18,8 +18,8 @@ class ContactFactory extends Factory
     {
         return [
             'address' => "A-65, ACME Co., Street no 12, New York",
-            'email' => "+001-28272300, 2466, 2469",
-            'phone_num' => "webmaster@cellinfo.com",
+            'gmail' => "webmaster@cellinfo.com",
+            'phone_num' => "+001-28272300, 2466, 2469",
         ];
     }
 }

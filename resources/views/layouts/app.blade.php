@@ -18,11 +18,12 @@
         @livewireStyles
     </head>
     <body>
-        <x-mainlayout>
+        {{-- <x-mainlayout> --}}
             <div class="font-sans text-gray-900 antialiased">
-                {{ $slot }}
+                {{-- {{ $slot }} --}}
+                @yield('mainlayout')
             </div>
-        </x-mainlayout>
+        {{-- </x-mainlayout> --}}
         @livewireScripts
     </body>
 </html>

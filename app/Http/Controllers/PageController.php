@@ -33,8 +33,7 @@ class PageController
 
     public function homepage()
     {
-        $contact = contact::all();
-        return view('homepage', ['contacts' => $contact]);
+        return view('homepage');
     }
 
     /**

@@ -1,3 +1,6 @@
-<x-app-layout>
+@extends('components.mainlayout')
+@section('maincontent')
 
-</x-app-layout>
+
+
+@endsection

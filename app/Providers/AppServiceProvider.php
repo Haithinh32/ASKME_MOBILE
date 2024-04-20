@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Providers;
-
+use App\Models\Contact;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -12,6 +13,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         //
+     
     }
 
     /**
@@ -20,5 +22,15 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+
+      
+        View::composer('components.footer', function ($view) {
+            $global_contact = Contact::first();
+
+            $sharedData = [
+                'global_contact' => $global_contact
+            ];
+            $view->with($sharedData);
+        });
     }
 }
