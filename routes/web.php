@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ProductsController;
 Route::get('/', function () {
-    return view('welcome');
+    return view('homepage');
 });
 
 Route::middleware([
@@ -15,3 +15,5 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get('/', [ProductsController::class, 'index'])->name('dashboard');
