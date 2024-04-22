@@ -2,7 +2,7 @@
     <div class="container mx-auto px-4 py-2 flex justify-between items-center">
         <a href="{{ route('homepage') }}" class="text-white bg-red-500 font-bold px-4 py-2 rounded">ASKME MOBILE</a>
         
-        <form class="flex items-center w-full md:w-auto" >
+        <form class="flex items-center w-full md:w-auto" action="{{route('homepage')}}" method = "GET">
             <input type="text" name="search" placeholder="Search..."
                 class="px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-red-500 focus:ring-1 mr-2">
             <button type="submit" class="text-red-500 hover:text-red-700">
@@ -21,6 +21,11 @@
                 <li class="nav-link"><a href="#contact" class="text-gray-700 hover:text-red-500">Contact</a></li>
             </ul>
         </nav>
+
+        <div class="flex items-center space-x-2">
+            <a href="{{ route('login') }}" class="px-3 py-2 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-700 hover:text-black">Login</a>
+            <a href="{{ route('register') }}" class="px-3 py-2 rounded-full bg-red-500 text-white hover:bg-red-700">Register</a>
+          </div>
     </div>
 </header>
 
