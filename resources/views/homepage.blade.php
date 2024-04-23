@@ -72,7 +72,7 @@
             flex-shrink;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: fit;
         }
 
         .main-content {
@@ -95,12 +95,12 @@
             <div class="grid grid-cols-12">
                 <x-navi/>
                 <x-bannerhomepage/>
-                <h1 class ="m-2 col-span-2">NEW PHONE</h1>
-                <div class="m-2 col-span-12 border rounded-lg bg-white grid grid-cols-12">
+                <h1 class ="m-2 col-span-2 font-bold">NEW PHONE</h1>
+                <div class="m-2 col-span-12 border rounded-lg bg-gray-200 grid grid-cols-12  flex">
                     @foreach($listproducts as $product)
                     <div class="m-2 col-span-3 border rounded-lg bg-white">
                         <div class="m-2"><img src="{{ asset($product->image) }}" class="rounded-lg w-100" /></div>
-                        <div class="m-2 text-bold">{{ $product->pname }}</div>
+                        <div class="m-2 font-bold">{{ $product->pname }}</div>
                         <div class="m-2 text-red-500">{{ $product->price }}₫</div>
                         <div class="m-2">{{ $product->description }}</div>
                     </div>
