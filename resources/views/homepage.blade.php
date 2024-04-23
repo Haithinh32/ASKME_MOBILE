@@ -88,41 +88,26 @@
     </style>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-
-<body>
-    <header>
-        @if (Route::has('login'))
-        <nav class="-mx-3 flex flex-1 justify-end">
-            @auth
-            <a href="{{ url('/dashboard') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                Dashboard
-            </a>
-            @else
-            <a href="{{ route('login') }}" class=" bg-red-300 rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                Log in
-            </a>
-
-            @if (Route::has('register'))
-            <a href="{{ route('register') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                Register
-            </a>
-            @endif
-            @endauth
-        </nav>
-        @endif
-    </header>
-
-    <main>
+@extends('components.mainlayout')
+@section('maincontent')
+<body class="bg-orange-200">
         <div class="main-content">
             <div class="grid grid-cols-12">
                 <x-navi/>
                 <x-bannerhomepage/>
                 <h1 class ="m-2 col-span-2">NEW PHONE</h1>
-                <div class="m-2 col-span-12 border rounded-lg">
+                <div class="m-2 col-span-12 border rounded-lg bg-white grid grid-cols-12">
+                    @foreach($listproducts as $product)
+                    <div class="m-2 col-span-3 border rounded-lg bg-white">
+                        <div class="m-2"><img src="{{ asset($product->image) }}" class="rounded-lg w-100" /></div>
+                        <div class="m-2 text-bold">{{ $product->pname }}</div>
+                        <div class="m-2 text-red-500">{{ $product->price }}₫</div>
+                        <div class="m-2">{{ $product->description }}</div>
+                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
-    </main>
 
     <script>
         var swiper = new Swiper(".mySwiper", {
@@ -151,5 +136,5 @@
         });
     </script>
 </body>
-
+@endsection
 </html>

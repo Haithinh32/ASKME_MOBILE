@@ -7,14 +7,14 @@ use App\Models\Products;
 
 use function Pest\Laravel\get;
 
-class ProductsController extends Controller
+class ProductsController extends PageController
 {
     public function index(){
         $listProduct = DB::table('products')
                             ->join('brands','products.brandId','=','brands.id')
-                            ->select('products.*')
+                            ->select('products.id','products.pname','brands.bname','products.price','products.image','products.description')
+                            ->limit(24)
                             ->get();
-                            dd($listProduct);
-        return view('dashboard',['listproducts' => $listProduct]);
+        return view('homepage',['listproducts' => $listProduct]);
     }
 }

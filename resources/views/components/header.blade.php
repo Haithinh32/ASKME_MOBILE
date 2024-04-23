@@ -1,5 +1,5 @@
 <header class="header">
-    <div class="container mx-auto px-4 py-2 flex justify-between items-center">
+    <div class="container mx-auto px-4 py-2 flex justify-between items-center bg-white">
         <a href="{{ route('homepage') }}" class="text-white bg-red-500 font-bold px-4 py-2 rounded">ASKME MOBILE</a>
         
         <form class="flex items-center w-full md:w-auto" >

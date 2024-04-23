@@ -1,5 +1,5 @@
 <div class="col-span-2">
-    <div class="border rounded-lg m-2">
+    <div class="border rounded-lg m-2 bg-white">
         <div class="navi-container">
             <ul class="p-1 px-2">
                 <li class="py-2">

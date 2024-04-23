@@ -1,6 +1,6 @@
 
 <div class="col-span-10">
-    <div class="border rounded-lg m-2">
+    <div class="border rounded-lg m-2 bg-white">
         <div class="swiper-container">
             <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
                 <div class="swiper-wrapper">
