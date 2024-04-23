@@ -1,9 +1,6 @@
 <?php
 
 namespace Database\Seeders;
-
-use App\Models\Contact;
-use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,7 +17,8 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-
-        Contact::factory()->count(1)->create();
+        // \App\Models\Contact::factory(2)->create();
+        // \App\Models\Brands::factory(3)->create();
+        \App\Models\Products::factory(24)->create();
     }
 }
