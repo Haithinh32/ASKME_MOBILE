@@ -21,7 +21,8 @@ class SpecsFactory extends Factory
             'cname' => $this->faker->name,
             'ram' => $this->faker->numberBetween(100, 1000),
             'bit' => $this->faker->numberBetween(100, 1000),
-            'storage' => $this->faker->numberBetween(100, 1000)
+            'storage' => $this->faker->numberBetween(100, 1000),
+            'battery' => $this->faker->numberBetween(100, 1000)
         ];
     }
 }

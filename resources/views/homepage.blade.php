@@ -69,7 +69,6 @@
 
         .swiper-slide img {
             display: flex;
-            flex-shrink;
             width: 100%;
             height: 100%;
             object-fit: fit;
