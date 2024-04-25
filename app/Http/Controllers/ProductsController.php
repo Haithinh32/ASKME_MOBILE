@@ -12,9 +12,10 @@ class ProductsController extends PageController
     public function index(){
         $listProduct = DB::table('products')
                             ->join('brands','products.brandId','=','brands.id')
-                            ->select('products.id','products.pname','brands.bname','products.price','products.image','products.description')
+                            ->select('products.id','products.pname','brands.bname','products.price','products.image','products.description','products.updated_at')
+                            ->orderBy('products.updated_at')
                             ->limit(24)
                             ->get();
-        return view('homepage',['listproducts' => $listProduct]);
+                            return view('homepage',['listproducts' => $listProduct]);
     }
 }
