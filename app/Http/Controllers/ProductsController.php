@@ -16,6 +16,28 @@ class ProductsController extends PageController
                             ->orderBy('products.updated_at')
                             ->limit(24)
                             ->get();
-                            return view('homepage',['listproducts' => $listProduct]);
+        $products = DB::table('products')->get();
+        if (request()->has('search'))
+        {
+            // dd($search_products);
+            $searched = [];
+            $search_string = request()->get('search','');
+            foreach($products as $product)
+            {
+                if(stripos($product->pname,$search_string) !== false)
+                {
+                    array_push($searched,$product);
+                }
+            }
+            // ->where('pname', 'like', '%' . request()->get('search', '') . '%');
+            return view(
+                'homepage',
+                [
+                    'listproducts' => $searched
+                ]
+            );
+        }
+        
+        return view('homepage',['listproducts' => $listProduct]);
     }
 }

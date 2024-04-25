@@ -1,8 +1,8 @@
 <header class="header">
     <div class="container mx-auto px-4 py-2 flex justify-between items-center bg-white">
         <a href="{{ route('homepage') }}" class="text-white bg-red-500 font-bold px-4 py-2 rounded">ASKME MOBILE</a>
-        
-        <form class="flex items-center w-full md:w-auto" action="{{route('homepage')}}" method = "GET">
+
+        <form class="flex items-center w-full md:w-auto" action="{{ route('homepage') }}" method = "GET">
             <input type="text" name="search" placeholder="Search..."
                 class="px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-red-500 focus:ring-1 mr-2">
             <button type="submit" class="text-red-500 hover:text-red-700">
@@ -13,7 +13,13 @@
                 </svg>
             </button>
         </form>
-        
+
+        <a href="{{route('compare')}}"
+            class="px-3 py-2 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-700 hover:text-black flex items-center">
+            <i class="fa-duotone fa-arrow-right-arrow-left"></i>
+            Compare
+        </a>
+
         <nav class="navbar-brand">
             <ul class="flex space-x-4">
                 <li class="nav-link"><a href="{{ route('homepage') }}" class="text-gray-700 hover:text-red-500">Home</a>
@@ -23,9 +29,10 @@
         </nav>
 
         <div class="flex items-center space-x-2">
-            <a href="{{ route('login') }}" class="px-3 py-2 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-700 hover:text-black">Login</a>
-            <a href="{{ route('register') }}" class="px-3 py-2 rounded-full bg-red-500 text-white hover:bg-red-700">Register</a>
-          </div>
+            <a href="{{ route('login') }}"
+                class="px-3 py-2 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-700 hover:text-black">Login</a>
+            <a href="{{ route('register') }}"
+                class="px-3 py-2 rounded-full bg-red-500 text-white hover:bg-red-700">Register</a>
+        </div>
     </div>
 </header>
-

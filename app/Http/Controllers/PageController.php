@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use App\Models\Products;
 use Illuminate\Support\Facades\DB;
 
 class PageController
@@ -36,18 +37,22 @@ class PageController
     {
         //check if the request have search value
         // these line should be un comment when product model, controller, view is ready
-        // $names = Product::orderBy('created_at','name');
+        $search_products = Products::orderBy('created_at','name');
         if (request()->has('search')) {
-            // $names = $names->where('name', 'like', '%' . request()->get('search', '') . '%');
+            $search_products = $search_products->where('pname', 'like', '%' . request()->get('search', '') . '%');
         }
         return view(
-            'homepage'
-            /*
+            'homepage',
             [
-                'names' => $names
+                '$search_products' => $search_products
             ]
-         */
+         
         );
+    }
+
+    public function compare()
+    {
+        
     }
 
     /**
