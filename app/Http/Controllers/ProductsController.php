@@ -16,15 +16,15 @@ class ProductsController extends PageController
                             ->orderBy('products.updated_at')
                             ->limit(24)
                             ->get();
-        $products = DB::table('products')->get();
         if (request()->has('search'))
         {
+            $products = DB::table('products')->get();
             // dd($search_products);
             $searched = [];
             $search_string = request()->get('search','');
             foreach($products as $product)
             {
-                if(stripos($product->pname,$search_string) !== false)
+                if(stripos($product->pname,$search_string) !== false or stripos($product->description,$search_string) !== false)
                 {
                     array_push($searched,$product);
                 }
@@ -37,7 +37,8 @@ class ProductsController extends PageController
                 ]
             );
         }
-        
+        //check if request have 'brand=..'
+
         return view('homepage',['listproducts' => $listProduct]);
     }
 }

@@ -35,19 +35,6 @@ class PageController
 
     public function homepage()
     {
-        //check if the request have search value
-        // these line should be un comment when product model, controller, view is ready
-        $search_products = Products::orderBy('created_at','name');
-        if (request()->has('search')) {
-            $search_products = $search_products->where('pname', 'like', '%' . request()->get('search', '') . '%');
-        }
-        return view(
-            'homepage',
-            [
-                '$search_products' => $search_products
-            ]
-         
-        );
     }
 
     public function compare()
