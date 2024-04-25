@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>ASKME MOBILE</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -90,23 +90,24 @@
 @extends('components.mainlayout')
 @section('maincontent')
 <body class="bg-orange-200">
-        <div class="main-content">
-            <div class="grid grid-cols-12">
-                <x-navi/>
-                <x-bannerhomepage/>
-                <h1 class ="m-2 col-span-2 font-bold">NEW PHONE</h1>
-                <div class="m-2 col-span-12 border rounded-lg bg-gray-200 grid grid-cols-12  flex">
-                    @foreach($listproducts as $product)
-                    <div class="m-2 col-span-3 border rounded-lg bg-white">
-                        <div class="m-2"><img src="{{ asset($product->image) }}" class="rounded-lg w-100" /></div>
-                        <div class="m-2 font-bold">{{ $product->pname }}</div>
-                        <div class="m-2 text-red-500">{{ $product->price }}₫</div>
-                        <div class="m-2">{{ $product->description }}</div>
-                    </div>
-                    @endforeach
+    <div class="main-content">
+        <div class="grid grid-cols-12">
+            <x-navi/>
+            <x-bannerhomepage/>
+            <h1 class ="m-2 col-span-2 font-bold">NEW PHONE</h1>
+            <div class="m-2 col-span-12 border rounded-lg bg-gray-200 grid-cols-12 grid">
+                
+                @foreach($listproducts as $product)
+                <div class="m-2 col-span-3 border rounded-lg bg-white">
+                    <div class="m-2"><img src="{{ asset($product->image) }}" class="rounded-lg w-100" /></div>
+                    <div class="m-2 font-bold">{{ $product->pname }}</div>
+                    <div class="m-2 text-red-500">{{ $product->price }}₫</div>
+                    <div class="m-2">{{ $product->description }}</div>
                 </div>
+                @endforeach
             </div>
         </div>
+    </div>
 
     <script>
         var swiper = new Swiper(".mySwiper", {

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use App\Models\Products;
 use Illuminate\Support\Facades\DB;
+
 class PageController
 {
     /**
@@ -33,7 +35,11 @@ class PageController
 
     public function homepage()
     {
-        return view('homepage');
+    }
+
+    public function compare()
+    {
+        
     }
 
     /**

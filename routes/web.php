@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
-Route::get('/', function () {
-    return view('homepage');
-});
+
+Route::get('/compare',[PageController::class, 'compare'])->name('compare');
 
 Route::middleware([
     'auth:sanctum',

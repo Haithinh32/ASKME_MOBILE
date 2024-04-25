@@ -14,8 +14,30 @@ class ProductsController extends PageController
                             ->join('brands','products.brandId','=','brands.id')
                             ->select('products.id','products.pname','brands.bname','products.price','products.image','products.description','products.updated_at')
                             ->orderBy('products.updated_at')
-                            ->limit(24)
-                            ->get();
+                            ->simplePaginate(24);
+                            if (request()->has('search'))
+                            {
+                                $products = DB::table('products')->get();
+                                // dd($search_products);
+                                $searched = [];
+                                $search_string = request()->get('search','');
+                                foreach($products as $product)
+                                {
+                                    if(stripos($product->pname,$search_string) !== false or stripos($product->description,$search_string) !== false)
+                                    {
+                                        array_push($searched,$product);
+                                    }
+                                }
+                                // ->where('pname', 'like', '%' . request()->get('search', '') . '%');
+                                return view(
+                                    'homepage',
+                                    [
+                                        'listproducts' => $searched
+                                    ]
+                                );
+                            }
+                            //check if request have 'brand=..'
+                    
                             return view('homepage',['listproducts' => $listProducts]);
     }
     public function index2(){

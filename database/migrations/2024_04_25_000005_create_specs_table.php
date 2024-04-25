@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('cname');
             $table->unsignedInteger('ram');
-            $table->unsignedInteger('bit');
-            $table->unsignedInteger('storage');
+            $table->unsignedInteger('disk');
             $table->unsignedInteger('battery');
             $table->timestamps();
         });
