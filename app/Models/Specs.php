@@ -13,5 +13,6 @@ class Specs extends Model
         'bit',
         'storage',
         'ram',
+        'battery',
     ];
 }

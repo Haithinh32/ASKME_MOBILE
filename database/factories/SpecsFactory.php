@@ -4,9 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
- */
+
 class SpecsFactory extends Factory
 {
     /**
@@ -19,9 +17,9 @@ class SpecsFactory extends Factory
         return [
             //
             'cname' => $this->faker->name,
-            'ram' => $this->faker->numberBetween(100, 1000),
-            'bit' => $this->faker->numberBetween(100, 1000),
-            'storage' => $this->faker->numberBetween(100, 1000)
+            'ram' => $this->faker->numberBetween(4,16),
+            'disk' => $this->faker->numberBetween(32,256),
+            'battery' => $this->faker->numberBetween(5,60),
         ];
     }
 }
