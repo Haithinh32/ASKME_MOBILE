@@ -31,3 +31,4 @@ Route::get('/addnew', function () {
 })->name('addnew');
 
 Route::get('/', [ProductsController::class, 'index1'])->name('homepage');
+

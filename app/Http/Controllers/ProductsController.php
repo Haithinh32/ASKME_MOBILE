@@ -9,6 +9,7 @@ use function Pest\Laravel\get;
 class ProductsController extends PageController
 {
     public function index1(){
+
         $listProducts = DB::table('products')
                             ->join('brands','products.brandId','=','brands.id')
                             ->select('products.id','products.pname','brands.bname','products.price','products.image','products.description','products.updated_at')
@@ -45,6 +46,7 @@ class ProductsController extends PageController
             Products::where('id', $id)->delete();
             return redirect()->route('dashboard');
         }
+
     }
 
     public function editproduct(Request $request)
