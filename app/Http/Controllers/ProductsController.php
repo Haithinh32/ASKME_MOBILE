@@ -9,34 +9,14 @@ use function Pest\Laravel\get;
 class ProductsController extends PageController
 {
     public function index1(){
-        $listProduct = DB::table('products')
+
+        $listProducts = DB::table('products')
                             ->join('brands','products.brandId','=','brands.id')
                             ->select('products.id','products.pname','brands.bname','products.price','products.image','products.description','products.updated_at')
                             ->orderBy('products.updated_at')
-                            ->simplePaginate(24);
-        if (request()->has('search'))
-        {
-            $products = DB::table('products')->simplePaginate(24);
-            // dd($search_products);
-            $searched = [];
-            $search_string = request()->get('search','');
-            foreach($products as $product)
-            {
-                if(stripos($product->pname,$search_string) !== false or stripos($product->description,$search_string) !== false)
-                {
-                    array_push($searched,$product);
-                }
-            }
-            // ->where('pname', 'like', '%' . request()->get('search', '') . '%');
-            return view(
-                'homepage',
-                [
-                    'listproducts' => $searched
-                ]
-            );
-        }
-        //check if request have 'brand=..'
-        return view('homepage',['listproducts' => $listProduct]);
+                            ->limit(24)
+                            ->get();
+                            return view('homepage',['listproducts' => $listProducts]);
     }
     public function index2(){
         $AdminlistProduct = DB::table('products')
@@ -66,5 +46,25 @@ class ProductsController extends PageController
             Products::where('id', $id)->delete();
             return redirect()->route('dashboard');
         }
+
+    }
+
+    public function editproduct(Request $request)
+    {   
+        $id = $request->input('id');
+        $product = Products::find($id);
+        return view('editproduct', ['products' => $product]);
+    }
+    
+    public function updateproduct(Request $request)
+    {
+        $id = $request->input('id');
+        $product = Products::find($id);
+        $product->pname = $request->input('pname');
+        $product->bname = $request->input('bname');
+        $product->price = $request->input('price');
+        $product->save();
+        return view('Dashboard');
     }
 }
+
