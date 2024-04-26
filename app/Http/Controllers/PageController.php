@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Models\Products;
 use Illuminate\Support\Facades\DB;
+use PDO;
 
 class PageController
 {
@@ -33,13 +34,19 @@ class PageController
         //
     }
 
-    public function homepage()
-    {
-    }
 
     public function compare()
     {
-        
+        $product_ids = session()->get('product_ids');
+        if($product_ids != null)
+        {
+            $products = DB::table('products')
+            ->whereIn('id',$product_ids)->get();
+            return view('compare',[
+                'products' => $products
+            ]);
+        }
+        return view('compare');
     }
 
     /**

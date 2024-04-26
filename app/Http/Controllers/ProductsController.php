@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Products;
-
 use function Pest\Laravel\get;
 
 class ProductsController extends PageController
@@ -14,30 +13,8 @@ class ProductsController extends PageController
                             ->join('brands','products.brandId','=','brands.id')
                             ->select('products.id','products.pname','brands.bname','products.price','products.image','products.description','products.updated_at')
                             ->orderBy('products.updated_at')
-                            ->simplePaginate(24);
-                            if (request()->has('search'))
-                            {
-                                $products = DB::table('products')->get();
-                                // dd($search_products);
-                                $searched = [];
-                                $search_string = request()->get('search','');
-                                foreach($products as $product)
-                                {
-                                    if(stripos($product->pname,$search_string) !== false or stripos($product->description,$search_string) !== false)
-                                    {
-                                        array_push($searched,$product);
-                                    }
-                                }
-                                // ->where('pname', 'like', '%' . request()->get('search', '') . '%');
-                                return view(
-                                    'homepage',
-                                    [
-                                        'listproducts' => $searched
-                                    ]
-                                );
-                            }
-                            //check if request have 'brand=..'
-                    
+                            ->limit(24)
+                            ->get();
                             return view('homepage',['listproducts' => $listProducts]);
     }
     public function index2(){
