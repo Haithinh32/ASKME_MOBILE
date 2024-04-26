@@ -13,12 +13,10 @@ class ProductsController extends PageController
                             ->join('brands','products.brandId','=','brands.id')
                             ->select('products.id','products.pname','brands.bname','products.price','products.image','products.description','products.updated_at')
                             ->orderBy('products.updated_at')
-<<<<<<< Updated upstream
-                            ->limit(24)
-                            ->get();
+                            ->simplePaginate(24);
         if (request()->has('search'))
         {
-            $products = DB::table('products')->get();
+            $products = DB::table('products')->simplePaginate(24);
             // dd($search_products);
             $searched = [];
             $search_string = request()->get('search','');
@@ -36,31 +34,9 @@ class ProductsController extends PageController
                     'listproducts' => $searched
                 ]
             );
-=======
-                            ->simplePaginate(24);
-                            if (request()->has('search'))
-                            {
-                                $products = DB::table('products')->get();
-                                // dd($search_products);
-                                $searched = [];
-                                $search_string = request()->get('search','');
-                                foreach($products as $product)
-                                {
-                                    if(stripos($product->pname,$search_string) !== false or stripos($product->description,$search_string) !== false)
-                                    {
-                                        array_push($searched,$product);
-                                    }
-                                }
-                                // ->where('pname', 'like', '%' . request()->get('search', '') . '%');
-                                return view(
-                                    'homepage',
-                                    [
-                                        'listproducts' => $searched
-                                    ]
-                                );
-                            }
-                            //check if request have 'brand=..'
-                            return view('homepage',['listproducts' => $listProducts]);
+        }
+        //check if request have 'brand=..'
+        return view('homepage',['listproducts' => $listProduct]);
     }
     public function index2(){
         $AdminlistProduct = DB::table('products')
@@ -89,10 +65,6 @@ class ProductsController extends PageController
             $id = $request->input('id');
             Products::where('id', $id)->delete();
             return redirect()->route('dashboard');
->>>>>>> Stashed changes
         }
-        //check if request have 'brand=..'
-
-        return view('homepage',['listproducts' => $listProduct]);
     }
 }

@@ -16,9 +16,6 @@ Route::middleware([
     })->name('homepage');
 });
 
-<<<<<<< Updated upstream
-Route::get('/', [ProductsController::class, 'index'])->name('homepage');
-=======
 Route::get('/dashboard', [ProductsController::class, 'index2'])->name('dashboard');
 
 Route::get('deleteproduct', [ProductsController::class, 'deleteproduct'])->name('deleteproduct');
@@ -35,4 +32,3 @@ Route::get('/addnew', function () {
 
 Route::get('/', [ProductsController::class, 'index1'])->name('homepage');
 
->>>>>>> Stashed changes
