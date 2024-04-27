@@ -15,7 +15,7 @@
 <div class="bg-orange-200">
     <div class="main-content">
         <div class="grid grid-cols-12">
-            <div class="col-span-12 bg-white flex m-2 border rounded-lg grid grid-cols-3 p-4">
+            <div class="col-span-12 bg-white m-2 border rounded-lg grid grid-cols-3 p-4">
                 <div class="col-span-2">
                     {{ __('List product') }}
                 </div>
