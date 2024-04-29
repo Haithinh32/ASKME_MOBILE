@@ -18,13 +18,13 @@ Route::middleware([
 
 Route::get('/dashboard', [ProductsController::class, 'index2'])->name('dashboard');
 
-Route::get('deleteproduct', [ProductsController::class, 'deleteproduct'])->name('deleteproduct');
+Route::get('/deleteproduct', [ProductsController::class, 'deleteproduct'])->name('deleteproduct');
 
-Route::post('editproduct', [ProductsController::class, 'editproduct'])->name('editproduct');
+Route::post('/editproduct', [ProductsController::class, 'editproduct'])->name('editproduct');
 
-Route::post('updateproduct', [ProductsController::class, 'updateproduct'])->name('updateproduct');
+Route::post('/updateproduct', [ProductsController::class, 'updateproduct'])->name('updateproduct');
 
-Route::post('addnew', [ProductsController::class, 'addnew'])->name('addnew');
+Route::post('/addnew', [ProductsController::class, 'addnew'])->name('addnew');
 
 Route::get('/addnew', function () {
     return view('addnew');

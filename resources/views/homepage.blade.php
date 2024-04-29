@@ -106,6 +106,11 @@
                 </div>
                 @endforeach
             </div>
+            <div class="d-flex justify-content-center">
+                @if ($listproducts->links())
+                  {!! $listproducts->links('pagination::tailwind') !!}
+                @endif
+            </div>
         </div>
     </div>
 

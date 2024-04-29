@@ -9,14 +9,38 @@ use function Pest\Laravel\get;
 class ProductsController extends PageController
 {
     public function index1(){
-
         $listProducts = DB::table('products')
                             ->join('brands','products.brandId','=','brands.id')
                             ->select('products.id','products.pname','brands.bname','products.price','products.image','products.description','products.updated_at')
                             ->orderBy('products.updated_at')
-                            ->limit(24)
-                            ->get();
-                            return view('homepage',['listproducts' => $listProducts]);
+                            ->paginate(24);
+        if (request()->has('search'))
+        {
+            $searched = [];
+            $search_string = request()->get('search','');
+            // dd($search_string);
+            $products = DB::table('products')
+            ->where('pname','like',"%$search_string%")
+            // dd($products->toSql());
+            ->orWhere('description','LIKE',"%".$search_string."%")
+            ->paginate(24);
+            // dd($search_products);
+            // foreach($products as $product)
+            // {
+            //     if(stripos($product->pname,$search_string) !== false or stripos($product->description,$search_string) !== false)
+            //     {
+            //         array_push($searched,$product);
+            //     }
+            // }
+            // dd($products);
+            return view(
+                'homepage',
+                [
+                    'listproducts' => $products
+                ]
+            );
+        }
+        return view('homepage',['listproducts' => $listProducts]);
     }
     public function index2(){
         $AdminlistProduct = DB::table('products')
