@@ -80,7 +80,6 @@
             display: flex;
             align-items: center;
         }
-
         .navi-container {
             height: 350px;
         }

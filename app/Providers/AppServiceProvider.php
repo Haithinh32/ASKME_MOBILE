@@ -4,7 +4,7 @@ namespace App\Providers;
 use App\Models\Contact;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-
+use App\Models\Brands;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -32,5 +32,15 @@ class AppServiceProvider extends ServiceProvider
             ];
             $view->with($sharedData);
         });
+
+        View::composer('components.navi', function ($view) {
+            $brands = Brands::all();
+
+            $sharedData = [
+                'brands' => $brands
+            ];
+            $view->with($sharedData);
+        });
+
     }
 }

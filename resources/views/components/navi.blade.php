@@ -1,31 +1,30 @@
 <div class="col-span-2">
     <div class="border rounded-lg m-2 bg-white">
-        <div class="navi-container">
-            <ul class="p-1 px-2">
-                <li class="py-2">
-                    <a href="#">Iphone</a>
-                </li>
-                <li class="py-2">
-                    <a href="#">Samsung</a>
-                </li>
-                <li class="py-2">
-                    <a href="#">Xiaomi</a>
-                </li>
-                <li class="py-2">
-                    <a href="#">OPPO</a>
-                </li>
-                <li class="py-2">
-                    <a href="#">realmi</a>
-                </li>
-                <li class="py-2">
-                    <a href="#">Vivo</a>
-                </li>
-                <li class="py-2">
-                    <a href="#">ASUS</a>
-                </li>
-                <li class="py-2">
-                    <a href="#">Nokia</a>
-                </li>
+        <div class="grid grid-cols-3 gap-2 navi-container">
+            <ul class="col-span-1 items-center justify-center py-2">
+
+                @foreach ($brands as $brand)
+                    <li>
+                        <div class="rounded-full overflow-hidden h-12 px-1 py-1 my-1">
+                            <img src="{{ asset($brand->blogo) }}" alt="{{ $brand->bname }} Logo"
+                                class="w-full h-full object-cover">
+                        </div>
+                    </li>
+                @endforeach
+
+            </ul>
+
+            <ul class="col-span-2 space-y-2">
+
+                @foreach ($brands as $brand)
+                    <li>
+                        <div class="hover:bg-gray-100 h-12 py-1">
+                            <a href="#"
+                                class="text-gray-700 font-medium text-sm hover:underline">{{ $brand->bname }}</a>
+                        </div>
+                    </li>
+                @endforeach
+
             </ul>
         </div>
     </div>
