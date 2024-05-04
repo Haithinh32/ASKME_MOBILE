@@ -1,7 +1,7 @@
 <div class="col-span-2">
     <div class="border rounded-lg m-2 bg-white">
-        <div class="grid grid-cols-3 gap-2 navi-container">
-            <ul class="col-span-1 items-center justify-center py-2">
+        <div class="grid grid-cols-3 gap-2 navi-container overflow-scroll">
+            <ul class="col-span-1 items-center justify-center py-2 ">
 
                 @foreach ($brands as $brand)
                     <li>
@@ -19,7 +19,7 @@
                 @foreach ($brands as $brand)
                     <li>
                         <div class="hover:bg-gray-100 h-12 py-1">
-                            <a href="#"
+                            <a href="{{route('brand',['id' => $brand->id])}}"
                                 class="text-gray-700 font-medium text-sm hover:underline">{{ $brand->bname }}</a>
                         </div>
                     </li>

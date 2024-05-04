@@ -1,22 +1,6 @@
 @extends('components.mainlayout')
 @section('maincontent')
-<style>
-    .main-content {
-        max-width: 80%;
-        margin: auto;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-    }
 
-    .footer {
-        margin-top: auto;
-    }
-
-    .text-right {
-        text-align: right;
-    }
-</style>
 
 <body class="bg-orange-200">
     <div class="main-content">

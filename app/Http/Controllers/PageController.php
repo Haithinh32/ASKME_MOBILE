@@ -37,9 +37,27 @@ class PageController
 
     public function compare()
     {
-        
+        return view("compare");
     }
+    public function brand(Request $request)
+    {
+        $brand = DB::table('brands')
+        ->where('id','=',$request->get('id',1))
+        ->select('brands.id','brands.blogo','brands.bname')
+        ->first();
+        $products = DB::table('products')
+        ->join('brands','products.brandId','=','brands.id')
+        ->where('brands.bname','=',$brand->bname)
+        ->select('products.id','products.pname','brands.bname','products.price','products.image','products.description','products.updated_at')
+        ->orderBy('products.updated_at')
+        ->paginate(24);
 
+        // dd($brand,$products,$request->get('id'));
+        return view("brand",[
+            'products' => $products,
+            'brand' => $brand
+        ]);
+    }
     /**
      * Show the form for editing the resource.
      */

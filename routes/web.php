@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
 
 Route::get('/compare',[PageController::class, 'compare'])->name('compare');
-
+Route::get('/brand',[PageController::class, 'brand'])->name('brand');
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

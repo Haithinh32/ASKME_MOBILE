@@ -21,7 +21,7 @@ class ProductsFactory extends Factory
             'pname' => $this->faker->name,
             'price' => $this->faker->numberBetween(100, 1000),
             'description' => $this->faker->paragraph,
-            'brandId' => $this->faker->numberBetween(1, 3),
+            'brandId' => $this->faker->numberBetween(1, 5),
             'specId' => $this->faker->numberBetween(1, 3),
             'image' => $this->faker->imageUrl(640, 480, 'food', true),
             'created_at' => now(),
