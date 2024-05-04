@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Products;
+use App\Models\Brands;
+use App\Models\Specs;
 use function Pest\Laravel\get;
 
 class ProductsController extends PageController
 {
-    public function index1(){
+    public function index_guest(){
         $listProducts = DB::table('products')
                             ->join('brands','products.brandId','=','brands.id')
                             ->select('products.id','products.pname','brands.bname','products.price','products.image','products.description','products.updated_at')
@@ -18,23 +20,11 @@ class ProductsController extends PageController
         {
             $searched = [];
             $search_string = request()->get('search','');
-            // dd($search_string);
             $products = DB::table('products')
             ->where('pname','like',"%$search_string%")
-            // dd($products->toSql());
-            ->orWhere('description','LIKE',"%".$search_string."%")
             ->paginate(24);
-            // dd($search_products);
-            // foreach($products as $product)
-            // {
-            //     if(stripos($product->pname,$search_string) !== false or stripos($product->description,$search_string) !== false)
-            //     {
-            //         array_push($searched,$product);
-            //     }
-            // }
-            // dd($products);
             return view(
-                'homepage',
+                'search',
                 [
                     'listproducts' => $products
                 ]
@@ -42,7 +32,7 @@ class ProductsController extends PageController
         }
         return view('homepage',['listproducts' => $listProducts]);
     }
-    public function index2(){
+    public function index_admin(){
         $AdminlistProduct = DB::table('products')
                             ->join('brands','products.brandId','=','brands.id')
                             ->select('products.id','products.pname','brands.bname','products.price','products.image','products.description','products.updated_at')
@@ -52,13 +42,29 @@ class ProductsController extends PageController
     }
 
     public function addnew(Request $request){
+        $file = $request->file('image');
+        $extension = $file ->getClientOriginalExtension();
+        $filename = time().'.'.$extension;
+        $path = 'uploads/product_img/';
+        $file->move($path, $filename);
+
+        $spec = new Specs();
+        $spec -> cname = $request->cname;
+        $spec -> ram = $request->ram;
+        $spec -> disk = $request->disk;
+        $spec -> battery = $request->battery;
+        $spec->save();
+        
         $product = new Products();
         $product->pname = $request->pname;
-        $product->brandId = $request->brandId;
+        $brand = DB::table('brands')
+                        ->where('bname', $request->bname)   
+                        ->get();
+        $product->brandId = $brand->id ;
         $product->description = $request->description;
-        $product->specId = $request->specId;
+        $product->specId = $spec->id;
         $product->price = $request->price;
-        $product->image = $request->image;
+        $product->image =  $path.$filename;
         $product->save();
         return redirect()->route('dashboard');
     }

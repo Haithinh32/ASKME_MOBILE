@@ -88,14 +88,15 @@
 </head>
 @extends('components.mainlayout')
 @section('maincontent')
+
 <body class="bg-orange-200">
     <div class="main-content">
         <div class="grid grid-cols-12">
-            <x-navi/>
-            <x-bannerhomepage/>
-            <h1 class ="m-2 col-span-2 font-bold">NEW PHONE</h1>
+            <x-navi />
+            <x-bannerhomepage />
+            <h1 class="m-2 col-span-2 font-bold">NEW PHONE</h1>
             <div class="m-2 col-span-12 border rounded-lg bg-gray-200 grid-cols-12 grid">
-                
+
                 @foreach($listproducts as $product)
                 <div class="m-2 col-span-3 border rounded-lg bg-white">
                     <div class="m-2"><img src="{{ asset($product->image) }}" class="rounded-lg w-100" /></div>
@@ -107,7 +108,7 @@
             </div>
             <div class="d-flex justify-content-center">
                 @if ($listproducts->links())
-                  {!! $listproducts->links('pagination::tailwind') !!}
+                {!! $listproducts->links('pagination::tailwind') !!}
                 @endif
             </div>
         </div>
@@ -141,4 +142,5 @@
     </script>
 </body>
 @endsection
+
 </html>
