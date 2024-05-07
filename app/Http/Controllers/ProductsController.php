@@ -8,7 +8,7 @@ use App\Models\Brands;
 use App\Models\Specs;
 use function Pest\Laravel\get;
 
-class ProductsController extends PageController
+class ProductsController extends Controller
 {
     public function index_guest(){
         $listProducts = DB::table('products')
@@ -16,20 +16,6 @@ class ProductsController extends PageController
                             ->select('products.id','products.pname','brands.bname','products.price','products.image','products.description','products.updated_at')
                             ->orderBy('products.updated_at')
                             ->paginate(24);
-        if (request()->has('search'))
-        {
-            $searched = [];
-            $search_string = request()->get('search','');
-            $products = DB::table('products')
-            ->where('pname','like',"%$search_string%")
-            ->paginate(24);
-            return view(
-                'search',
-                [
-                    'listproducts' => $products
-                ]
-            );
-        }
         return view('homepage',['listproducts' => $listProducts]);
     }
     public function index_admin(){
@@ -57,12 +43,21 @@ class ProductsController extends PageController
         
         $product = new Products();
         $product->pname = $request->pname;
-        $brand = DB::table('brands')
-                        ->where('bname', $request->bname)   
-                        ->get();
-        $product->brandId = $brand->id ;
-        $product->description = $request->description;
+
         $product->specId = $spec->id;
+
+        $brand = DB::table('brands')
+        ->where('bname', $request->bname)
+        ->select('brands.id')
+        ->first();
+    
+    if ($brand) {
+        $product->brandId = $brand->id;
+    } else {
+        return view('addnew');
+    }
+
+        $product->description = $request->description;
         $product->price = $request->price;
         $product->image =  $path.$filename;
         $product->save();
@@ -83,16 +78,42 @@ class ProductsController extends PageController
     {   
         $id = $request->input('id');
         $product = Products::find($id);
-        return view('editproduct', ['products' => $product]);
+        $brand = Brands::find($product->brandId);
+        $spec = Specs::find($product->SpecId);
+        return view('editproduct', ['products' => $product, 'brand' => $brand, 'spec' => $spec]);
     }
-    
+
     public function updateproduct(Request $request)
     {
+        $file = $request->file('image');
+        $extension = $file->getClientOriginalExtension();
+        $filename = time() . '.' . $extension;
+        $path = 'uploads/product_img/';
+        $file->move($path, $filename);
+
         $id = $request->input('id');
         $product = Products::find($id);
+        $brand = Brands::find($product->brandId);
+        $spec = Specs::find($product->specId);
         $product->pname = $request->input('pname');
-        $product->bname = $request->input('bname');
+        $spec->cname = $request->input('cname');
+        $spec->ram = $request->input('ram');
+        $spec->disk = $request->input('disk');
+        $spec->battery = $request->input('battery');
+        $brand = DB::table('brands')
+        ->where('bname', $request->bname)
+            ->select('brands.id')
+            ->first();
+
+        if ($brand) {
+            $product->brandId = $brand->id;
+        } else {
+            return view('addnew');
+        }
         $product->price = $request->input('price');
+        $product->description = $request->input('description');
+        $product->price = $request->input('price');
+        $product->image =  $path . $filename;
         $product->save();
         return view('Dashboard');
     }

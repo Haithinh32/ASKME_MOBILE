@@ -17,9 +17,9 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'admin',
         //     'password' => 'abc',
         // ]);
-        // \App\Models\Contact::factory(1)->create();
-        // \App\Models\Brands::factory(5)->create();
-        // \App\Models\Specs::factory(100)->create();
+        \App\Models\Contact::factory(1)->create();
+        \App\Models\Brands::factory(5)->create();
+        \App\Models\Specs::factory(100)->create();
         \App\Models\Products::factory(100)->create();
     }
 }
