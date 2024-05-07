@@ -21,9 +21,11 @@
                 @if (Route::has('login'))
                 <nav class="flex items-center space-x-2">
                     @auth
+                    @if(Auth::user()->usertype === 'admin')
                     <a href="{{ url('/dashboard') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
                         Dashboard
                     </a>
+                    @endif
                     @if (Route::has('register'))
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
