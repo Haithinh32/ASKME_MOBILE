@@ -9,14 +9,14 @@ use App\Http\Controllers\HomeController;
 Route::get('/compare',[PageController::class, 'compare'])->name('compare');
 Route::get('/brand',[PageController::class, 'brand'])->name('brand');
 
-Route::get('/', function () {
-    return view('homepage');
-});
+// Route::get('/', function () {
+//     return view('homepage');
+// });
 
 Route::get('/', [ProductsController::class, 'index_guest'])->name('homepage');
-Route::get('/homepage', function () {
-    return view('homepage');
-});
+// Route::get('/homepage', function () {
+//     return view('homepage');
+// });
 
 Route::get('/compare',[Controller::class, 'compare'])->name('compare');
 Route::get('/search', [ProductsController::class, 'index_guest'])->name('search');
