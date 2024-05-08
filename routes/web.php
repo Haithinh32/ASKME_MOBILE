@@ -8,6 +8,8 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/compare',[PageController::class, 'compare'])->name('compare');
 Route::get('/brand',[PageController::class, 'brand'])->name('brand');
+// Route::get('/download/product/{product}/docx', [PageController::class, 'downloadProductDocx'])
+//     ->name('download.product.docx');
 
 // Route::get('/', function () {
 //     return view('homepage');

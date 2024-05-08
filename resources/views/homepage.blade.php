@@ -103,6 +103,7 @@
                     <div class="m-2 font-bold">{{ $product->pname }}</div>
                     <div class="m-2 text-red-500">{{ $product->price }}₫</div>
                     <div class="m-2">{{ $product->description }}</div>
+                    {{-- <a href="{{ route('download.product.docx', $product->id) }}" class="btn btn-primary">Download DOCX</a> --}}
                 </div>
                 @endforeach
             </div>

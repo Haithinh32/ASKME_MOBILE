@@ -16,10 +16,7 @@
                             <p class="text-gray-700 mb-2">{{ $product->description }}</p>
                             <div class="flex items-center justify-between">
                                 <span class="text-red-500 font-bold">{{ $product->price }}₫</span>
-                                <button
-                                    class="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md font-semibold focus:outline-none">
-                                    View More
-                                </button> 
+                                {{-- <a href="{{ route('download.product.docx', $product->id) }}" class="btn btn-primary">Download DOCX</a> --}}
                             </div>
                         </div>
                     </div>
