@@ -12,10 +12,6 @@
                 </button>
             </form>
             <nav class="navbar-brand inline-flex">
-                <a href="{{route('compare')}}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                    <i class="fa-duotone fa-arrow-right-arrow-left"></i>
-                    Compare
-                </a>
                 <a href="{{ route('homepage') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">Home</a>
                 <a href="#contact" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">Contact</a>
                 @if (Route::has('login'))

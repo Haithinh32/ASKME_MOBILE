@@ -80,6 +80,7 @@
             display: flex;
             align-items: center;
         }
+
         .navi-container {
             height: 350px;
         }
@@ -89,61 +90,71 @@
 @extends('components.mainlayout')
 @section('maincontent')
 
-<body class="bg-orange-200">
-    <div class="main-content">
-        <div class="grid grid-cols-12">
-            <x-navi />
-            <x-bannerhomepage />
-            <h1 class="m-2 col-span-2 font-bold">NEW PHONE</h1>
-            <div class="m-2 col-span-12 border rounded-lg bg-gray-200 grid-cols-12 grid">
+    <body class="bg-orange-200">
+        <div class="main-content">
+            <div class="grid grid-cols-12">
+                <x-navi />
+                <x-bannerhomepage />
+                <h1 class="m-2 col-span-2 font-bold">NEW PHONE</h1>
+                <div class="m-2 col-span-12 border rounded-lg bg-gray-200 grid-cols-12 grid">
 
-                @foreach($listproducts as $product)
-                <div class="m-2 col-span-3 border rounded-lg bg-white">
-                    <div class="m-2"><img src="{{ asset($product->image) }}" class="rounded-lg w-100" /></div>
-                    <div class="m-2 font-bold">{{ $product->pname }}</div>
-                    <div class="m-2 text-red-500">{{ $product->price }}₫</div>
-                    <div class="m-2">{{ $product->description }}</div>
-                    <a href="{{ route('download.product.docx', ['id' => $product->id]) }}" class="btn btn-danger">DOWLOAD DOC</a>
+                    @foreach ($listproducts as $product)
+                        <div class="m-2 col-span-3 border rounded-lg bg-white">
+                            <div class="m-2"><img src="{{ asset($product->image) }}" class="rounded-lg w-100" /></div>
+                            <div class="m-2 font-bold">{{ $product->pname }}</div>
+                            <div class="m-2 text-red-500">{{ $product->price }}₫</div>
+                            <div class="m-2">{{ $product->description }}</div>
+                            {{-- <div class="m-2 col-span-3 relative"> --}}
+                                <a href="{{ route('download.product.docx', ['id' => $product->id]) }}"
+                                    class="inline-flex items-center px-4 py-2 rounded-lg text-white bg-red-500 hover:bg-red-600 focus:outline-none">
+                                    DOWNLOAD DOC
+                                </a>
+                            {{-- </div> --}}
+                            <a href="{{route('compare',['id' => $product->id])}}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
+                                <i class="fa-duotone fa-arrow-right-arrow-left"></i>
+                                Compare
+                            </a>
+                        </div>
+                        
+                    @endforeach
                 </div>
-                @endforeach
             </div>
         </div>
-    </div>
-    
-    <div class="container mx-auto px-4 py-8">
-                <div class="flex justify-center mt-8">
-                    @if ($listproducts->links())
-                        {!! $listproducts->links('pagination::tailwind') !!}
-                    @endif
-                </div>
+
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex justify-center mt-8">
+                @if ($listproducts->links())
+                    {!! $listproducts->links('pagination::tailwind') !!}
+                @endif
             </div>
-    <script>
-        var swiper = new Swiper(".mySwiper", {
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
-            },
-            spaceBetween: 10,
-            slidesPerView: 4,
-            freeMode: true,
-            watchSlidesProgress: true,
-        });
-        var swiper2 = new Swiper(".mySwiper2", {
-            spaceBetween: 10,
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-            thumbs: {
-                swiper: swiper,
-            },
-        });
-    </script>
-</body>
+        </div>
+        <script>
+            var swiper = new Swiper(".mySwiper", {
+                autoplay: {
+                    delay: 2500,
+                    disableOnInteraction: false,
+                },
+                spaceBetween: 10,
+                slidesPerView: 4,
+                freeMode: true,
+                watchSlidesProgress: true,
+            });
+            var swiper2 = new Swiper(".mySwiper2", {
+                spaceBetween: 10,
+                autoplay: {
+                    delay: 2500,
+                    disableOnInteraction: false,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                thumbs: {
+                    swiper: swiper,
+                },
+            });
+        </script>
+    </body>
 @endsection
 
 </html>

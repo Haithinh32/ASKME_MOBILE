@@ -8,6 +8,7 @@ use App\Models\Products;
 use App\Models\Brands;
 use App\Models\Specs;
 use Illuminate\Http\Request;
+use PhpOffice\PhpWord\Settings;
 
 class HomeController extends Controller
 {
@@ -33,7 +34,6 @@ class HomeController extends Controller
         $cname = $spec->cname;
         $price = $product->price;
         $description = $product->description;
-        $section->addHeader('');
         $section->addImage($product->image);
         $section->addText('Phone name:'.$pname);
         $section->addText('Brand name:'.$brandname);
@@ -46,6 +46,7 @@ class HomeController extends Controller
 
         $objWriter = IOFactory::createWriter($phpWord, 'Word2007');
         try {
+            Settings::setZipClass(Settings::PCLZIP);
             $objWriter->save(storage_path($product->pname.'.docx'));
         } catch (Exception $e) {
             // Handle exception if needed
