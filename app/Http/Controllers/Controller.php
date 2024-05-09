@@ -52,16 +52,4 @@ class Controller
             'brand' => $brand
         ]);
     }
-    private function generateProductDocx(Products $product)
-    {
-        $storage = Storage::disk('local'); // Adjust disk as needed
-        $path = "product-documents/" . $product->id . ".docx";
-
-        if ($storage->exists($path)) {
-            return $storage->get($path);
-        } else {
-            // Handle case where file doesn't exist (e.g., return error message)
-            abort(404, 'DOCX file not found for product ' . $product->id);
-        }
-    }
 }

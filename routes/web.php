@@ -6,11 +6,6 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
-Route::get('/compare',[PageController::class, 'compare'])->name('compare');
-Route::get('/brand',[PageController::class, 'brand'])->name('brand');
-// Route::get('/download/product/{product}/docx', [PageController::class, 'downloadProductDocx'])
-//     ->name('download.product.docx');
-
 // Route::get('/', function () {
 //     return view('homepage');
 // });
@@ -21,6 +16,7 @@ Route::get('/', [ProductsController::class, 'index_guest'])->name('homepage');
 // });
 
 Route::get('/compare',[Controller::class, 'compare'])->name('compare');
+Route::get('/brand',[Controller::class, 'brand'])->name('brand');
 Route::get('/search', [ProductsController::class, 'index_guest'])->name('search');
 
 Route::middleware('auth')->group(function () {
