@@ -103,18 +103,20 @@
                     <div class="m-2 font-bold">{{ $product->pname }}</div>
                     <div class="m-2 text-red-500">{{ $product->price }}₫</div>
                     <div class="m-2">{{ $product->description }}</div>
-                    {{-- <a href="{{ route('download.product.docx', $product->id) }}" class="btn btn-primary">Download DOCX</a> --}}
+                    <a href="{{ route('download.product.docx', ['id' => $product->id]) }}" class="btn btn-danger">DOWLOAD DOC</a>
                 </div>
                 @endforeach
             </div>
-            <div class="d-flex justify-content-center">
-                @if ($listproducts->links())
-                {!! $listproducts->links('pagination::tailwind') !!}
-                @endif
-            </div>
         </div>
     </div>
-
+    
+    <div class="container mx-auto px-4 py-8">
+                <div class="flex justify-center mt-8">
+                    @if ($listproducts->links())
+                        {!! $listproducts->links('pagination::tailwind') !!}
+                    @endif
+                </div>
+            </div>
     <script>
         var swiper = new Swiper(".mySwiper", {
             autoplay: {

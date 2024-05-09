@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 @import '~swiper/swiper.scss';
-@import '~swiper/swiper-bundle.scss';
 
 [x-cloak] {
     display: none;

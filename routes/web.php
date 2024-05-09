@@ -18,6 +18,7 @@ Route::get('/', [ProductsController::class, 'index_guest'])->name('homepage');
 Route::get('/compare',[Controller::class, 'compare'])->name('compare');
 Route::get('/brand',[Controller::class, 'brand'])->name('brand');
 Route::get('/search', [ProductsController::class, 'index_guest'])->name('search');
+Route::get('download.product.docx', [HomeController::class, 'generateDocx'])->name('download.product.docx');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
