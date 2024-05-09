@@ -8,7 +8,6 @@ use App\Models\Products;
 use App\Models\Brands;
 use App\Models\Specs;
 use Illuminate\Http\Request;
-
 class HomeController extends Controller
 {
    public function index (){
@@ -33,7 +32,6 @@ class HomeController extends Controller
         $cname = $spec->cname;
         $price = $product->price;
         $description = $product->description;
-        $section->addHeader('');
         $section->addImage($product->image);
         $section->addText('Phone name:'.$pname);
         $section->addText('Brand name:'.$brandname);
