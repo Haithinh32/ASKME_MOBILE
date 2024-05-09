@@ -105,17 +105,17 @@
                             <div class="m-2 text-red-500">{{ $product->price }}₫</div>
                             <div class="m-2">{{ $product->description }}</div>
                             {{-- <div class="m-2 col-span-3 relative"> --}}
-                                <a href="{{ route('download.product.docx', ['id' => $product->id]) }}"
-                                    class="inline-flex items-center px-4 py-2 rounded-lg text-white bg-red-500 hover:bg-red-600 focus:outline-none">
-                                    DOWNLOAD DOC
-                                </a>
+                            <a href="{{ route('download.product.docx', ['id' => $product->id]) }}"
+                                class="inline-flex items-center px-4 py-2 rounded-lg text-white bg-red-500 hover:bg-red-600 focus:outline-none">
+                                DOWNLOAD DOC
+                            </a>
                             {{-- </div> --}}
-                            <a href="{{route('compare',['id' => $product->id])}}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
+                            <a href="{{ route('compare', ['id' => $product->id]) }}"
+                                class="inline-flex items-center px-4 py-2 rounded-lg text-white bg-blue-500 hover:bg-blue-600 focus:outline-none">
                                 <i class="fa-duotone fa-arrow-right-arrow-left"></i>
                                 Compare
                             </a>
                         </div>
-                        
                     @endforeach
                 </div>
             </div>
