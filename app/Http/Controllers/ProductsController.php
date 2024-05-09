@@ -7,6 +7,7 @@ use App\Models\Products;
 use App\Models\Brands;
 use App\Models\Specs;
 use function Pest\Laravel\get;
+use Exception;
 
 class ProductsController extends Controller
 {
@@ -28,10 +29,17 @@ class ProductsController extends Controller
     }
 
     public function addnew(Request $request){
+try{
         $file = $request->file('image');
         $extension = $file ->getClientOriginalExtension();
         $filename = time().'.'.$extension;
         $path = 'uploads/product_img/';
+        $file->move($path, $filename);
+        
+        $file = $request->file('blogo');
+        $extension = $file ->getClientOriginalExtension();
+        $filename = time().'.'.$extension;
+        $path = 'uploads/brand_img/';
         $file->move($path, $filename);
 
         $spec = new Specs();
@@ -54,13 +62,21 @@ class ProductsController extends Controller
     if ($brand) {
         $product->brandId = $brand->id;
     } else {
-        return view('addnew');
+        $brand = new Brands();
+        $brand->bname = $request->bname;
+        $brand->blogo = $request->blogo;
+        $brand->save();
+        $product->brandId = $brand->id;
     }
 
         $product->description = $request->description;
         $product->price = $request->price;
         $product->image =  $path.$filename;
         $product->save();
+    }
+    catch(Exception $e){
+        return redirect()->route('addnew')->with('alert', 'Something went wrong happened');
+    }
         return redirect()->route('dashboard');
     }
 
