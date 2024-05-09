@@ -10,6 +10,11 @@
     }
 </style>
     <div class="container">
+    @if(session('alert'))
+        <div class="alert alert-success">
+            {{ session('alert') }}
+        </div>
+    @endif
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg grid grid-cols-3">
@@ -20,6 +25,10 @@
                                 <div class="mb-3">
                                     <label for="product Name" class="form-label">Product Name:</label>
                                     <input type="text" class="form-control" id="pname" name="pname" require>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="blogo" class="form-label">Brand logo:</label>
+                                    <input type="file" class="form-control" id="blogo" name="blogo" require>
                                 </div>
                                 <div class="mb-3">
                                     <label for="bname" class="form-label">Product Brand:</label>
