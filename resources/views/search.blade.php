@@ -1,7 +1,6 @@
 @extends('components.mainlayout')
 @section('maincontent')
 
-
 <body class="bg-orange-200">
     <div class="main-content">
         <div class="grid grid-cols-12">
