@@ -8,6 +8,8 @@ use App\Models\Products;
 use App\Models\Brands;
 use App\Models\Specs;
 use Illuminate\Http\Request;
+use PhpOffice\PhpWord\Settings;
+
 class HomeController extends Controller
 {
    public function index (){
@@ -44,6 +46,7 @@ class HomeController extends Controller
 
         $objWriter = IOFactory::createWriter($phpWord, 'Word2007');
         try {
+            Settings::setZipClass(Settings::PCLZIP);
             $objWriter->save(storage_path($product->pname.'.docx'));
         } catch (Exception $e) {
             // Handle exception if needed

@@ -10,25 +10,33 @@ use PDO;
 
 class Controller
 {
-    public function compare()
+    public function compare(Request $request)
     {
-        $products_diff_brand = DB::table('products')
-            ->select('products.*', 'specs.*', 'brands.*')
-            ->distinct('brandid')
-            ->limit(5)
+        $id = $request->input('id');
+        $product = DB::table('products')
             ->join('brands', 'products.brandid', '=', 'brands.id')
             ->join('specs', 'products.specid', '=', 'specs.id')
-            ->get();
+            ->where('products.id','=',$id)
+            ->first();
 
+        $products_diff_brand = DB::table('products')
+            ->join('brands', 'products.brandId', '=', 'brands.id')
+            ->join('specs', 'products.specId', '=', 'specs.id')
+            ->where ('products.brandid','!=',$product->brandId)
+            ->select('products.*','specs.cname','specs.ram','specs.disk','specs.battery','brands.bname')
+            ->limit(2)
+            ->get();
 
         $products_same_brand = DB::table('products')
-            ->select('products.*', 'specs.*', 'brands.*')
-            ->where('brandid', 1)
-            ->limit(2)
-            ->join('brands', 'products.brandid', '=', 'brands.id')
-            ->join('specs', 'products.specid', '=', 'specs.id')
+            ->join('brands', 'products.brandId', '=', 'brands.id')
+            ->join('specs', 'products.specId', '=', 'specs.id')
+            ->where('products.brandid','=',$product->brandId)
+            ->select('products.*','specs.cname','specs.ram','specs.disk','specs.battery','brands.bname')
+            ->limit(4)
             ->get();
+
         return view("compare", [
+            "main_product" => $product,
             "products_db" => $products_diff_brand,
             "products_sb" => $products_same_brand
         ]);
