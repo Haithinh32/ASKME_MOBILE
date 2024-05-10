@@ -8,28 +8,34 @@ use App\Models\Products;
 use Illuminate\Support\Facades\DB;
 use PDO;
 
-class Controller
-{
-    public function compare()
-    {   
+class Controller{
+    public function compare(Request $request)
+    {
+        $id = $request->input('id');
+        $product = DB::table('products')
+            ->join('brands', 'products.brandid', '=', 'brands.id')
+            ->join('specs', 'products.specid', '=', 'specs.id')
+            ->where('products.id','=',$id)
+            ->first();
 
         $products_diff_brand = DB::table('products')
-            ->join('brands', 'products.brandid', '=', 'brands.id')
-            ->join('specs', 'products.specid', '=', 'specs.id')
-            ->select('products.*','specs.cname','specs.disk','specs.battery','specs.ram','brands.id AS bid', 'brands.bname','brands.blogo')
-            ->distinct('bid')
-            ->limit(5)
+            ->join('brands', 'products.brandId', '=', 'brands.id')
+            ->join('specs', 'products.specId', '=', 'specs.id')
+            ->where ('products.brandid','!=',$product->brandId)
+            ->select('products.*','specs.cname','specs.ram','specs.disk','specs.battery','brands.bname')
+            ->limit(2)
             ->get();
-        dd($products_diff_brand);
 
         $products_same_brand = DB::table('products')
-            ->join('brands', 'products.brandid', '=', 'brands.id')
-            ->join('specs', 'products.specid', '=', 'specs.id')
-            ->where('brandid', 1)
-            ->limit(2)
-            ->select('products.*','specs.cname','specs.disk','specs.battery','specs.ram', 'brands.bname','brands.blogo')
+            ->join('brands', 'products.brandId', '=', 'brands.id')
+            ->join('specs', 'products.specId', '=', 'specs.id')
+            ->where('products.brandid','=',$product->brandId)
+            ->select('products.*','specs.cname','specs.ram','specs.disk','specs.battery','brands.bname')
+            ->limit(4)
             ->get();
+
         return view("compare", [
+            "main_product" => $product,
             "products_db" => $products_diff_brand,
             "products_sb" => $products_same_brand
         ]);
