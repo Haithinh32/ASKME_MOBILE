@@ -12,12 +12,21 @@ use Exception;
 class ProductsController extends Controller
 {
     public function index_guest(){
-        $listProducts = DB::table('products')
+        if(request()->has('search'))
+        {
+            $listProducts = DB::table('products')
+            ->where('products.pname','LIKE','%'.request()->get('search').'%')
+            ->paginate(24);
+            return view('search',['listproducts' => $listProducts]);
+        }
+        else 
+            $listProducts = DB::table('products')
                             ->join('brands','products.brandId','=','brands.id')
                             ->select('products.id','products.pname','brands.bname','products.price','products.image','products.description','products.updated_at')
                             ->orderBy('products.updated_at')
                             ->paginate(24);
-        return view('homepage',['listproducts' => $listProducts]);
+        
+            return view('homepage',['listproducts' => $listProducts]);
     }
     public function index_admin(){
         $AdminlistProduct = DB::table('products')
