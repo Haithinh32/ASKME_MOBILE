@@ -8,7 +8,6 @@ use App\Models\Products;
 use App\Models\Brands;
 use App\Models\Specs;
 use Illuminate\Http\Request;
-
 class HomeController extends Controller
 {
    public function index (){
