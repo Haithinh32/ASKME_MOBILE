@@ -31,6 +31,7 @@ class Controller
             ->join('brands', 'products.brandId', '=', 'brands.id')
             ->join('specs', 'products.specId', '=', 'specs.id')
             ->where('products.brandid','=',$product->brandId)
+            ->where('products.id','!=',$id)
             ->select('products.*','specs.cname','specs.ram','specs.disk','specs.battery','brands.bname')
             ->limit(4)
             ->get();
