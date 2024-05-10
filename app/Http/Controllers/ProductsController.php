@@ -75,7 +75,7 @@ try{
         $product->save();
     }
     catch(Exception $e){
-        return redirect()->route('addnew')->with('alert', 'Something went wrong happened');
+        return redirect()->view('addnew')->with('alert', 'Something went wrong happened');
     }
         return redirect()->route('dashboard');
     }

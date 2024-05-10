@@ -54,7 +54,6 @@ class Controller
             ->orderBy('products.updated_at')
             ->paginate(24);
 
-        // dd($brand,$products,$request->get('id'));
         return view("brand", [
             'products' => $products,
             'brand' => $brand

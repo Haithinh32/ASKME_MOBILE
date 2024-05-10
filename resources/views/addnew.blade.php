@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="blogo" class="form-label">Brand logo:</label>
-                                    <input type="file" class="form-control" id="blogo" name="blogo" require>
+                                    <input type="file" class="form-control" id="blogo" name="blogo">
                                 </div>
                                 <div class="mb-3">
                                     <label for="bname" class="form-label">Product Brand:</label>

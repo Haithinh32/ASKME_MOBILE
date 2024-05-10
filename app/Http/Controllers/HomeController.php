@@ -49,7 +49,7 @@ class HomeController extends Controller
             Settings::setZipClass(Settings::PCLZIP);
             $objWriter->save(storage_path($product->pname.'.docx'));
         } catch (Exception $e) {
-            // Handle exception if needed
+            return redirect()->view('homepage')->with('alert', 'Something went wrong, Fail to dowload');
         }
 
         return response()->download(storage_path($product->pname.'.docx'));
