@@ -11,22 +11,23 @@ use PDO;
 class Controller
 {
     public function compare()
-    {
+    {   
+
         $products_diff_brand = DB::table('products')
-            ->select('products.*', 'specs.*', 'brands.*')
-            ->distinct('brandid')
-            ->limit(5)
             ->join('brands', 'products.brandid', '=', 'brands.id')
             ->join('specs', 'products.specid', '=', 'specs.id')
+            ->select('products.*','specs.cname','specs.disk','specs.battery','specs.ram','brands.id AS bid', 'brands.bname','brands.blogo')
+            ->distinct('bid')
+            ->limit(5)
             ->get();
-
+        dd($products_diff_brand);
 
         $products_same_brand = DB::table('products')
-            ->select('products.*', 'specs.*', 'brands.*')
-            ->where('brandid', 1)
-            ->limit(2)
             ->join('brands', 'products.brandid', '=', 'brands.id')
             ->join('specs', 'products.specid', '=', 'specs.id')
+            ->where('brandid', 1)
+            ->limit(2)
+            ->select('products.*','specs.cname','specs.disk','specs.battery','specs.ram', 'brands.bname','brands.blogo')
             ->get();
         return view("compare", [
             "products_db" => $products_diff_brand,
