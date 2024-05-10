@@ -8,7 +8,8 @@ use App\Models\Products;
 use Illuminate\Support\Facades\DB;
 use PDO;
 
-class Controller{
+class Controller
+{
     public function compare(Request $request)
     {
         $id = $request->input('id');
